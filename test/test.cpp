@@ -13,7 +13,8 @@ TEST(CorrectLog, LogStaticFull) {
   std::ostringstream out;
   const std::shared_ptr<IObserver> ostream_logger =
       std::make_shared<OstreamLogger>(out);
-  CommandHandler ch(3, {&ostream_logger});
+  CommandHandler ch(3);
+  ch.AddObserver({&ostream_logger});
 
   std::stringstream in;
   in << "c1" << '\n';
@@ -32,7 +33,8 @@ TEST(CorrectLog, LogStaticEoF) {
   std::ostringstream out;
   const std::shared_ptr<IObserver> ostream_logger =
       std::make_shared<OstreamLogger>(out);
-  CommandHandler ch(3, {&ostream_logger});
+  CommandHandler ch(3);
+  ch.AddObserver({&ostream_logger});
 
   std::stringstream in;
   in << "c1\nc2\n";
@@ -49,7 +51,8 @@ TEST(CorrectLog, LogDin) {
   std::ostringstream out;
   const std::shared_ptr<IObserver> ostream_logger =
       std::make_shared<OstreamLogger>(out);
-  CommandHandler ch(3, {&ostream_logger});
+  CommandHandler ch(3);
+  ch.AddObserver({&ostream_logger});
 
   std::stringstream in;
   in << "c1" << '\n';
