@@ -12,21 +12,18 @@ class IObserver {
 };
 
 class IObservered {
- private:
-  virtual void AddObserver(
-      std::initializer_list<const std::shared_ptr<IObserver>*> observers) = 0;
-
  public:
+  virtual IObservered& AddObserver(
+      const std::shared_ptr<IObserver>& observer) = 0;
   virtual ~IObservered() = default;
 };
 
 class ObserveredCmd : public IObservered {
  public:
-  void AddObserver(std::initializer_list<const std::shared_ptr<IObserver>*>
-                       observers) override {
-    for (const auto& observer : observers) {
-      _observers.push_back(*observer);
-    }
+  IObservered& AddObserver(
+      const std::shared_ptr<IObserver>& observer) override {
+    _observers.push_back(observer);
+    return *this;
   };
 
   void NotifyBlockEnd(const std::string& comands) {

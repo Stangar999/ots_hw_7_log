@@ -16,7 +16,6 @@ class CommandHandler : public ObserveredCmd {
   const std::string end_din;
   bool _din_blok_is_active;
   size_t _cout_inline_command;
-  // std::ostream _out;
 
   void EndDinBlock() {
     _din_blok_is_active = false;
@@ -85,7 +84,6 @@ class CommandHandler : public ObserveredCmd {
     }
     _commands.clear();
     NotifyBlockEnd(result);
-    //_out << result << std::endl;
   }
 };
 

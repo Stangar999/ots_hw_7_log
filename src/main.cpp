@@ -15,7 +15,7 @@ int main(int argc, const char* argv[]) {
       std::make_shared<OstreamLogger>(std::cout);
   const std::shared_ptr<IObserver> file_logger = std::make_shared<FileLogger>();
   CommandHandler ch(N);
-  ch.AddObserver({&file_logger, &ostream_logger});
+  ch.AddObserver(file_logger).AddObserver(ostream_logger);
   ReadCommand(ch, std::cin);
   return 0;
 }
